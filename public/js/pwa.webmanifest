@@ -1,0 +1,23 @@
+{
+    "name": "Portfolio",
+    "short_name": "Portfolio",
+    "start_url": "/?home=true",
+    "icons": [
+        {
+            "src": "../images/manifest-icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "../images/manifest-icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable any"
+        }
+    ],
+    "theme_color": "#764ABC",
+    "background_color": "#764ABC",
+    "display": "fullscreen",
+    "orientation": "portrait"
+}
