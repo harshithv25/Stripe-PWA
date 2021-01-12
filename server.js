@@ -61,7 +61,7 @@ const port = process.env.PORT || 5000
 
 app.use((req, res, next) => {
   if (!req.secure) {
-    return res.redirect(`https://${req.headers.host + req.url}`)
+    return res.redirect(`https://${req.headers.host}`)
   }
   next();
 })
