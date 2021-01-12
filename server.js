@@ -58,6 +58,19 @@ const server = https.createServer({ key: key, cert: cert }, app);
 const httpPort = process.env.PORT || 5000
 const httpsPort = process.env.PORT || 8000
 
+const forceSsl = function (req, res, next) {
+   if (req.headers['x-forwarded-proto'] !== 'https') {
+       return res.redirect(['https://', req.get('Host'), req.url].join(''));
+   }
+   return next();
+};
+
+app.configure(function () {      
+   if (env === 'production') {
+       app.use(forceSsl);
+   }
+});
+
 // app.use((req, res, next) => {
 //    if (!req.secure) {
 //       console.log(`redirecting to ${req.headers.host}`)
