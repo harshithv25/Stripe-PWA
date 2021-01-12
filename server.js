@@ -59,13 +59,13 @@ const cert = fs.readFileSync('./certs/localhost.crt');
 const server = https.createServer({key: key, cert: cert }, app);
 const port = process.env.PORT || 5000
 
-// app.use((req, res, next) => {
-//   if (!req.secure) {
-//      console.log(`redirecting to https://${req.headers.host}`)
-//     return res.redirect(`https://${req.headers.host + req.url}`)
-//   }
-//   next();
-// })
+app.use((req, res, next) => {
+  if (!req.secure) {
+     console.log(`redirecting to https://${req.headers.host}`)
+    return res.redirect(`https://${req.headers.host + req.url}`)
+  }
+  next();
+})
 
 app.use(express.static(path.join(__dirname, 'public')))
 
@@ -87,6 +87,6 @@ app.listen(port, function () {
   console.log(`Listening on port ${port}!`)
 })
 
-// server.listen(httpsPort, function () {
-//    console.log(`Listening on port ${httpsPort}!`)
-// })
+server.listen(port, function () {
+   console.log(`Listening on port ${httpsPort}!`)
+})
