@@ -49,27 +49,27 @@
 const express = require('express')
 const path = require('path')
 const stripe = require("stripe")('sk_test_51HRuezHkbzSCimCfJ7kHjfyXogOLSrUfVFOFqBiGxqL0OhBGQGH1ySWQBgffpr83AVQetioaiuBmFIsxwXQaP8LZ00MNVO8iiY');
-const httpPort = 3000
-const httpsPort = 8000
 const app = express()
 const fs = require('fs')
 const https = require('https')
 const key = fs.readFileSync('./certs/localhost.key');
 const cert = fs.readFileSync('./certs/localhost.crt');
-const server = https.createServer({key: key, cert: cert }, app);
-const port = process.env.PORT || 5000
+const server = https.createServer({ key: key, cert: cert }, app);
+const httpPort = process.env.PORT || 5000
+const httpsPort = process.env.PORT || 8000
 
-// app.use((req, res, next) => {
-//   if (!req.secure) {
-//     return res.redirect(`https://${req.headers.host}`)
-//   }
-//   next();
-// })
+app.use((req, res, next) => {
+   if (!req.secure) {
+      console.log(`redirecting to ${req.headers.host}`)
+      return res.redirect(`https://${req.headers.host}${req.url}`)
+   }
+   next();
+})
 
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, 'public/index.html'))
+app.get('/', function (req, res) {
+   res.sendFile(path.join(__dirname, 'public/index.html'))
 })
 
 app.post('/payments', async (req, res) => {
@@ -82,6 +82,10 @@ app.post('/payments', async (req, res) => {
    })
 });
 
-app.listen(port, function () {
-  console.log(`Listening on port ${port}!`)
+app.listen(httpPort, function () {
+   console.log(`Listening on port ${httpPort}!`)
+})
+
+server.listen(httpsPort, function () {
+   console.log(`Listening on port ${httpsPort}!`)
 })

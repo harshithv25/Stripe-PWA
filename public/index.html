@@ -7,8 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://js.stripe.com/v3/"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
-    <script src="./js/client.js" defer></script>
-    <script src="./js/pwa.js" defer></script>
     <script src="./js/status.js"></script>
     <link rel="manifest" href="/js/pwa.webmanifest">
     <link rel="stylesheet" href="styles.css">
@@ -36,11 +34,13 @@
     </form>
     <button>Install App</button>
     <span>You are now <span><b class="page-status"> online</b></span></span>
-    <!-- <script>
+    <script src="./js/client.js"></script>
+    <script src="./js/pwa.js"></script>
+    <script>
         if('serviceWorker' in navigator){
             navigator.serviceWorker.register('/service-worker.js');
         }
-    </script> -->
+    </script>
 </body>
 
 </html>

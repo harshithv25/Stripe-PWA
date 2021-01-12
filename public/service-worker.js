@@ -3,6 +3,8 @@ const toCache = [
     '/',
     '/index.html',
     '/styles.css',
+    '/js/client.js',
+    '/js/pwa.js',
     '/js/status.js',
 ];
 
