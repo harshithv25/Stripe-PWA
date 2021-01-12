@@ -65,7 +65,7 @@ app.use((req, res, next) => {
    if (env === 'production') {
       app.use(forceSsl);
    }else{
-      return next()
+      next()
    }
 })
 
