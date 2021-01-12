@@ -57,6 +57,7 @@ const cert = fs.readFileSync('./certs/localhost.crt');
 const server = https.createServer({ key: key, cert: cert }, app);
 const httpPort = process.env.PORT || 5000
 const httpsPort = process.env.PORT || 8000
+const env = process.env.NODE_ENV || 'development';
 
 const forceSsl = function (req, res, next) {
    if (req.headers['x-forwarded-proto'] !== 'https') {
@@ -64,6 +65,7 @@ const forceSsl = function (req, res, next) {
    }
    return next();
 };
+
 app.use((req, res, next) => {
    if (env === 'production') {
       app.use(forceSsl);
