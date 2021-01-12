@@ -86,6 +86,6 @@ app.listen(httpPort, function () {
    console.log(`Listening on port ${httpPort}!`)
 })
 
-server.listen(httpsPort, function () {
+server.listen(8000, function () {
    console.log(`Listening on port ${httpsPort}!`)
 })
