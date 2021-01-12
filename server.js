@@ -58,13 +58,13 @@ const server = https.createServer({ key: key, cert: cert }, app);
 const httpPort = process.env.PORT || 5000
 const httpsPort = process.env.PORT || 8000
 
-app.use((req, res, next) => {
-   if (!req.secure) {
-      console.log(`redirecting to ${req.headers.host}`)
-      return res.redirect(`https://${req.headers.host}${req.url}`)
-   }
-   next();
-})
+// app.use((req, res, next) => {
+//    if (!req.secure) {
+//       console.log(`redirecting to ${req.headers.host}`)
+//       return res.redirect(`https://${req.headers.host}${req.url}`)
+//    }
+//    next();
+// })
 
 app.use(express.static(path.join(__dirname, 'public')))
 
