@@ -64,12 +64,13 @@ const forceSsl = function (req, res, next) {
    }
    return next();
 };
-
-app.use(function () {      
+app.use((req, res, next) => {
    if (env === 'production') {
-       app.use(forceSsl);
+      app.use(forceSsl);
+   }else{
+      return next()
    }
-});
+})
 
 // app.use((req, res, next) => {
 //    if (!req.secure) {
