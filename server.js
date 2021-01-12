@@ -54,20 +54,12 @@ const httpPort = process.env.PORT || 5000
 const httpsPort = process.env.PORT || 8000
 const env = process.env.NODE_ENV || 'development';
 
-const forceSsl = function (req, res, next) {
-   if (req.headers['x-forwarded-proto'] !== 'https') {
-      res.redirect("https://" + req.hostname + req.url);
-   }
-   return next();
-};
-
-app.use((req, res, next) => {
-   if (env === 'production') {
-      app.use(forceSsl);
-   }else{
-      next()
-   }
-})
+// const forceSsl = function (req, res, next) {
+//    if (req.headers['x-forwarded-proto'] !== 'https') {
+//       res.redirect("https://" + req.hostname + req.url);
+//    }
+//    return next();
+// };
 
 app.use(express.static(path.join(__dirname, 'public')))
 
