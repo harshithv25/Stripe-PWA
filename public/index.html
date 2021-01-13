@@ -1,81 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="description" content="A basic PWA app">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="A basic PWA app" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://js.stripe.com/v3/"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
     <script src="./js/status.js"></script>
-    <link rel="manifest" href="/js/pwa.webmanifest">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="apple-touch-icon" href="./images/manifest-icon-192.png">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="theme-color" content="#764ABC"/>
+    <link rel="manifest" href="/js/pwa.webmanifest" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="apple-touch-icon" href="./images/manifest-icon-192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#764ABC" />
     <title>PWA</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <form id="payment-form">
-        <label for="payment__input">Amount</label>
-        <input type="number" name="amount" id="payment__input" placeholder="The amount you wanna donate">
-        <div id="card-element"></div>
-        <button id="submit">
-            <div class="spinner hidden" id='spinner'></div>
-            <span id="button-text">
-                Pay
-            </span>
-        </button>
-        <p id="card-error" role="alert"></p>
-        <p class="result-message hidden">
-            Payment succeeded, see your <a>Dashboard</a>
-        </p>
+      <input type="number" name="amount" id="payment__input" placeholder="The amount you wanna donate" />
+      <div id="card-element"></div>
+      <button id="submit">
+        <div class="spinner hidden" id="spinner"></div>
+        <span id="button-text"> Pay </span>
+      </button>
+      <p id="card-error" role="alert"></p>
+      <p class="result-message hidden">Payment succeeded, see your <a>Dashboard</a></p>
     </form>
     <button>Install App</button>
-    <span>You are now <span><b class="page-status"> online</b></span></span>
+    <span
+      >You are now <span><b class="page-status"> online</b></span></span
+    >
     <script src="./js/client.js"></script>
     <script src="./js/pwa.js"></script>
     <script>
-        if('serviceWorker' in navigator){
-            navigator.serviceWorker.register('/service-worker.js');
-        }
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/service-worker.js");
+      }
     </script>
-</body>
-
+  </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- <link rel="apple-touch-startup-image" href="public/images/apple-splash-2048-2732.jpg"
 media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
