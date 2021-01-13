@@ -52,24 +52,26 @@ const stripe = require("stripe")("sk_test_51HRuezHkbzSCimCfJ7kHjfyXogOLSrUfVFOFq
 const app = express();
 const port = process.env.PORT || process.env.VCAP_APP_PORT || 3000;
 
-app.enable("trust proxy");
-app.use(function (req, res, next) {
-  if (req.secure) {
-    next();
-  } else {
-    res.redirect("https://" + req.headers.host + req.url);
-  }
-});
+app.use(express.urlencoded({ extended: true }));
+
+// app.enable("trust proxy");
+// app.use(function (req, res, next) {
+//   if (req.secure) {
+//     next();
+//   } else {
+//     res.redirect("https://" + req.headers.host + req.url);
+//   }
+// });
 
 app.use(express.static(path.join(__dirname, "public")));
 
-app.get("/", function (req, res) {
+app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public/index.html"));
 });
 
 app.post("/payments", async (req, res) => {
   const paymentIntent = await stripe.paymentIntents.create({
-    amount: req.body.amount,
+    amount: req.query.total,
     currency: "inr",
   });
   res.send({

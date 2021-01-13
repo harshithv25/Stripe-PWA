@@ -37,7 +37,8 @@ card.on("change", (event) => {
 });
 
 const pay = async () => {
-  await fetch("/payments", {
+  loading(true)
+  await fetch(`/payments?total=${amountInput.value * 100}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
