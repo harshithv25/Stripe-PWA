@@ -1,23 +1,81 @@
 {
-    "name": "Portfolio",
-    "short_name": "Portfolio",
-    "start_url": "/",
-    "icons": [
+  "name": "Portfolio",
+  "short_name": "Portfolio",
+  "start_url": "/",
+  "shortcuts": [
+    {
+      "name": "Payme",
+      "short_name": "Payme",
+      "description": "Just Payme some money",
+      "url": "/",
+      "icons": [
         {
-            "src": "../images/manifest-icon-192.png",
-            "sizes": "192x192",
-            "type": "image/png",
-            "purpose": "maskable any"
-        },
-        {
-            "src": "../images/manifest-icon-512.png",
-            "sizes": "512x512",
-            "type": "image/png",
-            "purpose": "maskable any"
+          "src": "../images/manifest-icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png",
+          "purpose": "maskable any"
         }
-    ],
-    "theme_color": "#764ABC",
-    "background_color": "#764ABC",
-    "display": "fullscreen",
-    "orientation": "portrait"
+      ]
+    },
+    {
+      "name": "Payme1",
+      "short_name": "Payme",
+      "description": "Just Payme some money",
+      "url": "/",
+      "icons": [
+        {
+          "src": "../images/manifest-icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png",
+          "purpose": "maskable any"
+        }
+      ]
+    },
+    {
+      "name": "Payme2",
+      "short_name": "Payme",
+      "description": "Just Payme some money",
+      "url": "/",
+      "icons": [
+        {
+          "src": "../images/manifest-icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png",
+          "purpose": "maskable any"
+        }
+      ]
+    },
+    {
+      "name": "Payme3",
+      "short_name": "Payme",
+      "description": "Just Payme some money",
+      "url": "/",
+      "icons": [
+        {
+          "src": "../images/manifest-icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png",
+          "purpose": "maskable any"
+        }
+      ]
+    }
+  ],
+  "icons": [
+    {
+      "src": "../images/manifest-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "../images/manifest-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "theme_color": "#764ABC",
+  "background_color": "#764ABC",
+  "display": "fullscreen",
+  "orientation": "portrait"
 }
