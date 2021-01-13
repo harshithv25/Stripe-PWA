@@ -46,37 +46,37 @@
 //     res.json({ id: session.id });
 // });
 
-const express = require('express')
-const path = require('path')
-const stripe = require("stripe")('sk_test_51HRuezHkbzSCimCfJ7kHjfyXogOLSrUfVFOFqBiGxqL0OhBGQGH1ySWQBgffpr83AVQetioaiuBmFIsxwXQaP8LZ00MNVO8iiY');
-const app = express()
-const httpPort = process.env.PORT || 5000
-const httpsPort = process.env.PORT || 8000
-const env = process.env.NODE_ENV || 'development';
+const express = require("express");
+const path = require("path");
+const stripe = require("stripe")("sk_test_51HRuezHkbzSCimCfJ7kHjfyXogOLSrUfVFOFqBiGxqL0OhBGQGH1ySWQBgffpr83AVQetioaiuBmFIsxwXQaP8LZ00MNVO8iiY");
+const app = express();
+const port = process.env.PORT || process.env.VCAP_APP_PORT || 3000;
 
-// const forceSsl = function (req, res, next) {
-//    if (req.headers['x-forwarded-proto'] !== 'https') {
-//       res.redirect("https://" + req.hostname + req.url);
-//    }
-//    return next();
-// };
-
-app.use(express.static(path.join(__dirname, 'public')))
-
-app.get('/', function (req, res) {
-   res.sendFile(path.join(__dirname, 'public/index.html'))
-})
-
-app.post('/payments', async (req, res) => {
-   const paymentIntent = await stripe.paymentIntents.create({
-      amount: req.body.amount,
-      currency: 'inr'
-   })
-   res.send({
-      clientSecret: paymentIntent.client_secret
-   })
+app.enable("trust proxy");
+app.use(function (req, res, next) {
+  if (req.secure) {
+    next();
+  } else {
+    res.redirect("https://" + req.headers.host + req.url);
+  }
 });
 
-app.listen(httpPort, function () {
-   console.log(`Listening on port ${httpPort} and ${httpsPort}!`)
-})
+app.use(express.static(path.join(__dirname, "public")));
+
+app.get("/", function (req, res) {
+  res.sendFile(path.join(__dirname, "public/index.html"));
+});
+
+app.post("/payments", async (req, res) => {
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: req.body.amount,
+    currency: "inr",
+  });
+  res.send({
+    clientSecret: paymentIntent.client_secret,
+  });
+});
+
+app.listen(port, function () {
+  console.log(`Listening on port ${port}`);
+});
