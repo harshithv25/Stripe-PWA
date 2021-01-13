@@ -53,15 +53,14 @@ const app = express();
 const port = process.env.PORT || process.env.VCAP_APP_PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
-
-// app.enable("trust proxy");
-// app.use(function (req, res, next) {
-//   if (req.secure) {
-//     next();
-//   } else {
-//     res.redirect("https://" + req.headers.host + req.url);
-//   }
-// });
+app.enable("trust proxy");
+app.use(function (req, res, next) {
+  if (req.secure) {
+    next();
+  } else {
+    res.redirect("https://" + req.headers.host + req.url);
+  }
+});
 
 app.use(express.static(path.join(__dirname, "public")));
 
